@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meridian Coastal Tea — Shop</title>
+    <meta name="description" content="Current tins from Meridian Coastal Tea Company, each with its batch card: garden, elevation, flush, and days rested.">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <!-- Client-rendered SPA: the real content is fetched from /api/products and
+         injected by app.js as a grid of batch cards. A crawler that does NOT
+         execute JS sees only this shell; one that DOES sees the hydrated grid.
+         The maze renderer executes the JS, so decoys mimic the hydrated DOM
+         rather than this empty container. -->
+    <header class="site-header">
+      <h1 class="brand">Meridian Coastal Tea</h1>
+      <nav class="site-nav" aria-label="primary"></nav>
+    </header>
+    <main id="app" class="shop" data-state="loading">
+      <p class="loading">Fetching the current tins…</p>
+    </main>
+    <footer class="site-footer">
+      <p>Every tin ships with its batch card. Blended at Pier Road, rested before it leaves.</p>
+    </footer>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

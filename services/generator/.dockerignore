@@ -1,0 +1,3 @@
+# Keep the CDK DockerImageAsset fingerprint stable: local installs must not
+# churn the build context (deps are installed inside the image from the lockfile).
+node_modules

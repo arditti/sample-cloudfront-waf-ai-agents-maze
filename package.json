@@ -1,0 +1,10 @@
+{
+  "name": "ai-maze-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Maze runtime Lambda handlers (repo root). Declares runtime deps that must be npm-installed into a bundle: the native CRT SigV4a signer esbuild cannot inline, plus the KVS client that must share the signer's signature-v4-multi-region instance (co-installed, not left external). Everything else is esbuild-bundled from source.",
+  "dependencies": {
+    "@aws-sdk/client-cloudfront-keyvaluestore": "3.1110.0",
+    "@aws-sdk/signature-v4-crt": "3.1110.0"
+  }
+}

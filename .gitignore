@@ -1,0 +1,27 @@
+# Node
+node_modules/
+npm-debug.log*
+*.tsbuildinfo
+
+# CDK
+infra/cdk.out/
+cdk.out/
+cdk.context.json
+
+# Release bundle (build_bundle.py output)
+_public/
+
+# Deploy artifacts / local outputs
+*.outputs.json
+cdk-outputs.json
+
+# OS / editor
+.DS_Store
+*.swp
+*.log
+
+# Local env
+.env
+.env.*
+.screenshots/
+holmes-report-*.json

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="northern coast tin">
+  <rect width="400" height="300" fill="#d69ba0"/>
+  <rect y="196" width="400" height="104" fill="#8a4a52"/>
+  <rect x="150" y="96" width="100" height="100" fill="#f6f2e9" opacity=".92"/>
+  <text x="200" y="160" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#8a4a52">NTH</text>
+</svg>

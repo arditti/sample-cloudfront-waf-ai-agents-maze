@@ -1,0 +1,38 @@
+{
+  "name": "ai-maze-infra",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Maze on AWS — e2e POC CDK app (WAF detection + CloudFront Functions + S3 serving + async Bedrock generation)",
+  "bin": {
+    "maze": "bin/maze.ts"
+  },
+  "scripts": {
+    "synth": "cdk synth --strict",
+    "diff": "cdk diff",
+    "deploy": "cdk deploy --require-approval never",
+    "destroy": "cdk destroy --force",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.162",
+    "@types/node": "24.13.3",
+    "aws-cdk": "2.1135.0",
+    "esbuild": "0.28.1",
+    "tsx": "4.23.8",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-agentcore": "3.1104.0",
+    "@aws-sdk/client-bedrock-runtime": "3.1104.0",
+    "@aws-sdk/client-cloudfront-keyvaluestore": "3.1110.0",
+    "@aws-sdk/client-dynamodb": "3.1104.0",
+    "@aws-sdk/client-lambda": "3.1104.0",
+    "@aws-sdk/client-s3": "3.1104.0",
+    "@aws-sdk/client-sqs": "3.1104.0",
+    "@aws-sdk/client-ssm": "3.1104.0",
+    "@aws-sdk/signature-v4-crt": "3.1110.0",
+    "@aws-sdk/util-dynamodb": "3.996.7",
+    "aws-cdk-lib": "2.263.0",
+    "constructs": "10.8.1"
+  }
+}

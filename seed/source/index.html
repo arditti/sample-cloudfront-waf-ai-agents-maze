@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meridian Coastal Tea Company — Small-Batch Loose-Leaf Blends</title>
+    <meta name="description" content="Meridian Coastal Tea Company hand-blends loose-leaf tea in small batches on the northern coast. Garden-sourced leaf, rested two weeks, shipped in tins with a batch card.">
+    <link rel="canonical" href="/">
+    <style>
+      /* Meridian Coastal — the batch card is the page.
+         Labels live in ::before rather than in the markup, so a data row holds
+         nothing but its value. Type is inverted on purpose: monospace carries the
+         display voice (this is a business of weights, dates and initials) and the
+         serif carries the prose. No external font or asset requests. */
+      :root {
+        --ink: #0e1c1b;
+        --slate: #35514f;
+        --tide: #7fa8a0;
+        --mist: #e6edea;
+        --card: #fbfcfb;
+        --buckthorn: #e9a227;
+        --mono: ui-monospace, "SF Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+        --serif: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--mist);
+        color: var(--ink);
+        font: 1.0625rem/1.65 var(--serif);
+      }
+      a { color: var(--slate); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+      a:hover { color: var(--ink); }
+      :focus-visible { outline: 2px solid var(--buckthorn); outline-offset: 3px; }
+
+      /* Eyebrow rail: mono, letterspaced, hairline under. */
+      .rail {
+        display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem;
+        align-items: baseline; justify-content: space-between;
+        padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
+        border-bottom: 1px solid var(--tide);
+        font: 0.6875rem/1 var(--mono);
+        letter-spacing: 0.16em; text-transform: uppercase;
+      }
+      .rail b { font-weight: 500; }
+      .rail span { color: var(--slate); }
+
+      .wrap { max-width: 68rem; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 4rem); }
+
+      /* Hero: a thesis line beside today's batch card. */
+      .hero { display: grid; gap: clamp(2rem, 5vw, 4rem); padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3.5rem); }
+      @media (min-width: 56rem) { .hero { grid-template-columns: 1.15fr 0.85fr; align-items: start; } }
+      .hero h1 {
+        margin: 0 0 1rem;
+        font: 400 clamp(2rem, 5.5vw, 3.25rem)/1.08 var(--serif);
+        letter-spacing: -0.015em;
+      }
+      .hero h1 em { font-style: normal; color: var(--slate); }
+      .lede { margin: 0; max-width: 34ch; color: var(--slate); font-size: 1.125rem; }
+
+      /* SIGNATURE: the batch card. */
+      .batch {
+        background: var(--card);
+        border: 1px solid var(--ink);
+        box-shadow: 3px 3px 0 var(--tide);
+        padding: 1.15rem 1.25rem 1.25rem;
+      }
+      .batch-head {
+        display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+        padding-bottom: 0.7rem; margin-bottom: 0.7rem;
+        border-bottom: 2px solid var(--ink);
+        font: 0.625rem/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--slate);
+      }
+      .batch h2, .batch h3 {
+        margin: 0 0 0.9rem;
+        font: 500 1.0625rem/1.2 var(--mono);
+        letter-spacing: 0.02em;
+      }
+      .row {
+        display: flex; align-items: baseline; gap: 0.5rem;
+        font: 0.8125rem/1.9 var(--mono);
+      }
+      /* Label from CSS, so the row's only text node is the value. */
+      .row::before {
+        color: var(--slate);
+        letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.6875rem;
+        white-space: nowrap;
+      }
+      .row::after {
+        content: ""; flex: 1 1 auto; order: 1;
+        border-bottom: 1px dotted var(--tide); transform: translateY(-0.25em);
+      }
+      .row > * , .row { order: 0; }
+      .garden::before  { content: "garden"; }
+      .elev::before    { content: "elevation"; }
+      .flush::before   { content: "flush"; }
+      .rested::before  { content: "rested"; }
+      .mixed::before   { content: "mixed by"; }
+      .price::before   { content: "per tin"; }
+      .row .v { order: 2; font-variant-numeric: tabular-nums; }
+      .rested .v { color: var(--ink); font-weight: 500; }
+      .rested .v::after {
+        content: "✳"; margin-left: 0.4em; color: var(--buckthorn);
+      }
+
+      /* Sections */
+      section { padding: clamp(2.5rem, 6vw, 4rem) 0; border-top: 1px solid var(--tide); }
+      h2.sec {
+        margin: 0 0 1.5rem;
+        font: 500 0.6875rem/1 var(--mono);
+        letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate);
+      }
+      p { margin: 0 0 1.1rem; max-width: 62ch; }
+      p:last-child { margin-bottom: 0; }
+
+      .cards { display: grid; gap: 1.25rem; }
+      @media (min-width: 46rem) { .cards { grid-template-columns: repeat(3, 1fr); } }
+      .cards p { font-size: 0.9375rem; color: var(--slate); margin: 0.9rem 0 0; max-width: none; }
+
+      /* Sourcing ledger */
+      .ledger { width: 100%; border-collapse: collapse; font: 0.8125rem/1.8 var(--mono); }
+      .ledger th {
+        text-align: left; font-weight: 500; color: var(--slate);
+        font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase;
+        border-bottom: 2px solid var(--ink); padding: 0 1rem 0.5rem 0;
+      }
+      .ledger td { padding: 0.45rem 1rem 0.45rem 0; border-bottom: 1px solid var(--tide); font-variant-numeric: tabular-nums; }
+
+      nav.links ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; list-style: none; margin: 0; padding: 0;
+        font: 0.75rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+      footer { border-top: 1px solid var(--tide); padding: 2rem 0 3rem; color: var(--slate);
+        font: 0.75rem/1.7 var(--mono); letter-spacing: 0.06em; }
+    </style>
+  </head>
+  <body>
+    <div class="rail">
+      <b>Meridian Coastal Tea Company</b>
+      <span>Pier Road · blending since 2011</span>
+      <nav class="links" aria-label="primary">
+        <ul>
+          <li><a href="/app/index.html">Shop</a></li>
+          <li><a href="#blends">Blends</a></li>
+          <li><a href="#sourcing">Sourcing</a></li>
+          <li><a href="#brewing">Brewing</a></li>
+          <li><a href="#wholesale">Wholesale</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="wrap">
+      <div class="hero">
+        <div>
+          <h1>Twelve kilograms at a time, <em>rested two weeks before it reaches a tin.</em></h1>
+          <p class="lede">
+            We blend loose-leaf tea by hand in a converted fishing shed at the end
+            of Pier Road. Every tin carries the card below.
+          </p>
+        </div>
+        <article class="batch">
+          <div class="batch-head"><span>Batch card</span><span>No. 4417</span></div>
+          <h2>Harbor Fog</h2>
+          <div class="row garden"><span class="v">Dikom, Assam</span></div>
+          <div class="row elev"><span class="v">980 m</span></div>
+          <div class="row flush"><span class="v">Second</span></div>
+          <div class="row rested"><span class="v">14 days</span></div>
+          <div class="row mixed"><span class="v">R.A.</span></div>
+        </article>
+      </div>
+
+      <section id="story">
+        <h2 class="sec">How we started</h2>
+        <p>
+          Meridian Coastal began in 2011 with one 40-litre blending drum and a
+          standing order from the cafe next door. We still blend in the same
+          building, though the drum has been joined by three others and the
+          standing order has grown to fourteen wholesale accounts along the coast.
+        </p>
+        <p>
+          Resting is the part most producers skip. It lets the moisture in a fresh
+          blend equalise across the leaf, so the third cup from a tin tastes like
+          the first. Nothing leaves the shed without a batch card recording the
+          garden, the blend date, and the name of whoever mixed it.
+        </p>
+      </section>
+
+      <section id="blends">
+        <h2 class="sec">Signature blends</h2>
+        <div class="cards">
+          <article class="batch">
+            <div class="batch-head"><span>Black</span><span>No. 4417</span></div>
+            <h3>Harbor Fog</h3>
+            <div class="row garden"><span class="v">Dikom, Assam</span></div>
+            <div class="row elev"><span class="v">980 m</span></div>
+            <div class="row rested"><span class="v">14 days</span></div>
+            <div class="row price"><span class="v">$18.50</span></div>
+            <p>
+              Second-flush Assam cut with dried sea buckthorn from the dunes north
+              of the harbour. Malty, thick enough to take milk, citrus arriving late.
+            </p>
+          </article>
+          <article class="batch">
+            <div class="batch-head"><span>Green</span><span>No. 4402</span></div>
+            <h3>Tideline Green</h3>
+            <div class="row garden"><span class="v">Shizuoka</span></div>
+            <div class="row elev"><span class="v">210 m</span></div>
+            <div class="row rested"><span class="v">14 days</span></div>
+            <div class="row price"><span class="v">$16.00</span></div>
+            <p>
+              Steamed sencha layered over toasted brown rice, four parts to one.
+              Savoury, faintly sweet, and forgiving of a hurried steep.
+            </p>
+          </article>
+          <article class="batch">
+            <div class="batch-head"><span>Oolong</span><span>No. 4388</span></div>
+            <h3>Cold Kiln Oolong</h3>
+            <div class="row garden"><span class="v">Dong Ding terrace</span></div>
+            <div class="row elev"><span class="v">1,200 m</span></div>
+            <div class="row rested"><span class="v">42 days</span></div>
+            <div class="row price"><span class="v">$24.00</span></div>
+            <p>
+              Twice-roasted, rested six weeks rather than two. Stone fruit, a dry
+              mineral finish, and the only blend we ask you not to add anything to.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sourcing">
+        <h2 class="sec">Sourcing</h2>
+        <p>
+          We buy from six partner gardens and visit each at least once every two
+          years. Four are smallholder cooperatives; two are single estates. We pay
+          above the regional auction average and publish what we paid, per lot, in
+          the annual letter that goes to wholesale accounts each March.
+        </p>
+        <table class="ledger">
+          <thead>
+            <tr><th>Garden</th><th>Region</th><th>Elevation</th><th>Structure</th><th>Since</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Dikom</td><td>Assam</td><td>980 m</td><td>Estate</td><td>2011</td></tr>
+            <tr><td>Kanoya</td><td>Shizuoka</td><td>210 m</td><td>Cooperative</td><td>2014</td></tr>
+            <tr><td>Dong Ding</td><td>Nantou</td><td>1,200 m</td><td>Cooperative</td><td>2016</td></tr>
+            <tr><td>Nuwara</td><td>Central</td><td>1,890 m</td><td>Cooperative</td><td>2019</td></tr>
+            <tr><td>Anxi</td><td>Fujian</td><td>760 m</td><td>Cooperative</td><td>2021</td></tr>
+            <tr><td>Dune plot</td><td>Pier Road</td><td>4 m</td><td>Our own</td><td>2013</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="brewing">
+        <h2 class="sec">Brewing notes</h2>
+        <p>
+          Water just off the boil for the black blends; let greens cool to around
+          80&nbsp;°C — a minute off the kettle is close enough. Three grams of leaf
+          to 200&nbsp;millilitres, three minutes for the first infusion.
+        </p>
+        <p>
+          Most blends reward a second and third infusion, each about thirty seconds
+          longer than the last; the oolong will take five. If a cup comes out thin,
+          add leaf rather than time. If it comes out harsh, drop the water
+          temperature before you shorten the steep.
+        </p>
+      </section>
+
+      <section id="wholesale">
+        <h2 class="sec">Wholesale</h2>
+        <p>
+          We supply cafes, restaurants, and a handful of independent grocers along
+          the northern coast. Minimum order is two kilograms across any blends,
+          delivered fortnightly on our own van within forty kilometres and by
+          courier beyond that. Batch cards travel with every delivery.
+        </p>
+      </section>
+
+      <footer>
+        <p>Meridian Coastal Tea Company — blended at Pier Road, rested before it ships.</p>
+        <nav class="links" aria-label="footer">
+          <ul>
+            <li><a href="/app/index.html">Shop</a></li>
+            <li><a href="#sourcing">Sourcing</a></li>
+            <li><a href="#wholesale">Wholesale</a></li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

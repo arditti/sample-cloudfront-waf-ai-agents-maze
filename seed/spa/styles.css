@@ -1,0 +1,95 @@
+/* Meridian Coastal — shop. Same tokens and the same batch card as the main site;
+   here the card is the grid unit. Labels come from ::before so a data row holds
+   nothing but its value, which is also what lets a structure-isomorphic decoy
+   keep correct labels while inventing the values. */
+:root {
+  --ink: #0e1c1b;
+  --slate: #35514f;
+  --tide: #7fa8a0;
+  --mist: #e6edea;
+  --card: #fbfcfb;
+  --buckthorn: #e9a227;
+  --mono: ui-monospace, "SF Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+  --serif: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 1.0625rem/1.65 var(--serif); }
+a { color: var(--slate); text-underline-offset: 2px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--buckthorn); outline-offset: 3px; }
+
+.site-header {
+  display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem;
+  align-items: baseline; justify-content: space-between;
+  padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--tide);
+}
+.brand {
+  margin: 0;
+  font: 500 0.6875rem/1 var(--mono);
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+.site-nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem;
+  font: 0.6875rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; }
+
+.shop { padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 5vw, 4rem); max-width: 74rem; margin: 0 auto; }
+.shop::before {
+  content: "Current tins"; display: block; margin-bottom: 1.5rem;
+  font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--slate);
+}
+.product-grid { display: grid; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+@media (min-width: 40rem) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 62rem) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* The batch card, as a shop tile. */
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--tide);
+  padding: 1.15rem 1.25rem 1.25rem;
+  display: flex; flex-direction: column;
+}
+.product-card .batch-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  padding-bottom: 0.7rem; margin-bottom: 0.7rem;
+  border-bottom: 2px solid var(--ink);
+  font: 0.625rem/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--slate);
+}
+/* The tin label sits flush to the card edges, like a pasted-on paper label. */
+.product-card .tin {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  margin: 0 0 0.85rem; border: 1px solid var(--ink); background: var(--tide);
+}
+.product-card h3 { margin: 0 0 0.9rem; font: 500 1.0625rem/1.2 var(--mono); letter-spacing: 0.02em; }
+.product-card .row { display: flex; align-items: baseline; gap: 0.5rem; font: 0.8125rem/1.9 var(--mono); }
+.product-card .row::before {
+  color: var(--slate); font-size: 0.6875rem;
+  letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+}
+.product-card .row::after {
+  content: ""; flex: 1 1 auto; order: 1;
+  border-bottom: 1px dotted var(--tide); transform: translateY(-0.25em);
+}
+.product-card .row .v { order: 2; font-variant-numeric: tabular-nums; }
+.garden::before { content: "garden"; }
+.elev::before   { content: "elevation"; }
+.flush::before  { content: "flush"; }
+.rested::before { content: "rested"; }
+.price::before  { content: "per tin"; }
+.rested .v { font-weight: 500; }
+.rested .v::after { content: "✳"; margin-left: 0.4em; color: var(--buckthorn); }
+.product-card .notes {
+  margin: 0.9rem 0 0; font-family: var(--serif); font-size: 0.9375rem;
+  color: var(--slate);
+}
+.product-card[data-stock="out"] { box-shadow: 3px 3px 0 #d8ded9; }
+.product-card[data-stock="out"] .batch-head::after { content: "sold out"; color: var(--ink); }
+
+.loading { color: var(--slate); font: 0.8125rem/1.8 var(--mono); letter-spacing: 0.08em; }
+.site-footer {
+  border-top: 1px solid var(--tide); padding: 2rem clamp(1.25rem, 5vw, 4rem) 3rem;
+  color: var(--slate); font: 0.75rem/1.7 var(--mono); letter-spacing: 0.06em;
+}

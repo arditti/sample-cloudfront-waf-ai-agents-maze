@@ -1,0 +1,17 @@
+{
+  "name": "ai-maze-generator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Generator agent — runs on Amazon Bedrock AgentCore Runtime: fetches real content as a visitor, detects its archetype (html|json) from the response content-type, validates it with the model, calls Opus 5, renders structure-isomorphic decoys with injected tracking IDs, and seals an immutable DynamoDB snapshot.",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "3.1104.0",
+    "@aws-sdk/client-dynamodb": "3.1104.0",
+    "@aws-sdk/client-lambda": "3.1104.0",
+    "@aws-sdk/client-s3": "3.1104.0",
+    "@aws-sdk/util-dynamodb": "3.996.7"
+  }
+}

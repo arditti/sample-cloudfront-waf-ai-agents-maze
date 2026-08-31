@@ -1,0 +1,11 @@
+{
+  "name": "ai-maze-renderer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Headless Playwright renderer Lambda — executes a page's JS and captures the rendered DOM + fetched JSON for isomorphic decoy generation.",
+  "dependencies": {
+    "aws-lambda-ric": "4.0.2",
+    "playwright-core": "1.62.1"
+  }
+}
